@@ -2,17 +2,14 @@ package auth
 
 import (
 	"github.com/gin-gonic/gin"
-	"gohub/app/http/controllers/v1"
 	"gohub/app/requests"
 	"gohub/app/utils"
 	"net/http"
 )
 
-type SignupController struct {
-	v1.BaseController
-}
+type SignupController struct{}
 
-func (sc *SignupController) IsPhoneExist(c *gin.Context) {
+func (s *SignupController) IsPhoneExist(c *gin.Context) {
 
 	request := requests.SignupPhoneExistRequest{}
 	if ok := requests.Validate(c, &request, requests.SignupPhoneExist); !ok {
@@ -20,6 +17,6 @@ func (sc *SignupController) IsPhoneExist(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"exist": utils.IsPhoneExist(request.Phone),
+		"exist": utils.IsDataExist("phone", request.Phone),
 	})
 }

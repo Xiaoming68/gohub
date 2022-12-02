@@ -5,16 +5,9 @@ import (
 	"gohub/initPack/database"
 )
 
-// IsEmailExist 验证邮箱是否存在
-func IsEmailExist(email string) bool {
+// IsDataExist 验证数据是否存在
+func IsDataExist(field string, parameter string) bool {
 	var count int64
-	database.DB.Model(users.User{}).Where("email = ?", email).Count(&count)
-	return count > 0
-}
-
-// IsPhoneExist 判断手机号已被注册
-func IsPhoneExist(phone string) bool {
-	var count int64
-	database.DB.Model(users.User{}).Where("phone = ?", phone).Count(&count)
+	database.DB.Model(users.User{}).Where("? = ?", field, parameter).Count(&count)
 	return count > 0
 }

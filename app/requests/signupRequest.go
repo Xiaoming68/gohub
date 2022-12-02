@@ -5,6 +5,7 @@ import (
 	"github.com/thedevsaddam/govalidator"
 )
 
+// SignupPhoneExistRequest 固定请求体参数
 type SignupPhoneExistRequest struct {
 	Phone string `json:"phone,omitempty" valid:"phone"`
 }

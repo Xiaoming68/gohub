@@ -33,7 +33,7 @@ func Validate(c *gin.Context, obj interface{}, handler ValidatorFunc) bool {
 	return true
 }
 
-// validate 配置选项、开始验证(被传入的方法调用)
+// validate 检验参数方法
 func validate(data interface{}, rules govalidator.MapData, messages govalidator.MapData) map[string][]string {
 	opts := govalidator.Options{
 		Data:          data,
@@ -45,6 +45,7 @@ func validate(data interface{}, rules govalidator.MapData, messages govalidator.
 	return govalidator.New(opts).ValidateStruct()
 }
 
+// validateFile 检验文件方法
 func validateFile(c *gin.Context, data interface{}, rules govalidator.MapData, messages govalidator.MapData) map[string][]string {
 	opts := govalidator.Options{
 		Request:       c.Request,
@@ -52,6 +53,7 @@ func validateFile(c *gin.Context, data interface{}, rules govalidator.MapData, m
 		Messages:      messages,
 		TagIdentifier: "valid",
 	}
-	// 调用 govalidator 的 Validate 方法来验证文件
+	// 调用 goValidator 的 Validate 方法来验证文件
 	return govalidator.New(opts).Validate()
+
 }

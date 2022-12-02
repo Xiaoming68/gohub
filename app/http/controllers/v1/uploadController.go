@@ -4,10 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type UploadController struct {
-	BaseController
-}
+type UploadController struct{}
 
-func (ctrl *UploadController) Upload(c *gin.Context) {
+func (u *UploadController) Upload(c *gin.Context) {
 
 }
